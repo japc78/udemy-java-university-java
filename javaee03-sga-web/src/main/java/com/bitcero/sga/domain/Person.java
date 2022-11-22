@@ -2,28 +2,44 @@ package com.bitcero.sga.domain;
 
 import java.io.Serializable;
 
-public class Person implements Serializable {
-  private static final long serialVersionUID = 1070657378382797790L;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
+@Entity
+@NamedQueries({
+  @NamedQuery(name="Person.findAll", query="SELECT p FROM Person p ORDER BY p.id")
+})
+@Table(name="person")
+public class Person implements Serializable {
+
+  private static final long serialVersionUID = -8923404059714150531L;
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "id")
   private int id;
+
   private String name;
   private String surname;
   private String email;
-  private String phoneNumber;
+  @Column(name = "phone_number")
+  private String phoneNUmber;
 
-  /**
-   * @param id
-   * @param name
-   * @param surname
-   * @param email
-   * @param phoneNumber
-   */
-  public Person(int id, String name, String surname, String email, String phoneNumber) {
-    this.id = id;
+
+  public Person() {
+  }
+
+  public Person( String name, String surname, String email, String phoneNUmber) {
     this.name = name;
     this.surname = surname;
     this.email = email;
-    this.phoneNumber = phoneNumber;
+    this.phoneNUmber = phoneNUmber;
   }
 
   /**
@@ -90,17 +106,17 @@ public class Person implements Serializable {
   }
 
   /**
-   * @return the phoneNumber
+   * @return the phoneNUmber
    */
-  public String getPhoneNumber() {
-    return phoneNumber;
+  public String getPhoneNUmber() {
+    return phoneNUmber;
   }
 
   /**
-   * @param phoneNumber the phoneNumber to set
+   * @param phoneNUmber the phoneNUmber to set
    */
-  public void setPhoneNumber(String phoneNumber) {
-    this.phoneNumber = phoneNumber;
+  public void setPhoneNUmber(String phoneNUmber) {
+    this.phoneNUmber = phoneNUmber;
   }
 
   /* (non-Javadoc)
@@ -109,8 +125,8 @@ public class Person implements Serializable {
 
   @Override
   public String toString() {
-    return "Person [id=" + id + ", name=" + name + ", surname=" + surname + ", email=" + email + ", phoneNumber="
-        + phoneNumber + "]";
+    return "Person [id=" + id + ", name=" + name + ", surname=" + surname + ", email=" + email + ", phoneNUmber="
+        + phoneNUmber + "]";
   }
 
 }
