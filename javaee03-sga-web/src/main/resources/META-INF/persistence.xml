@@ -5,6 +5,7 @@
 
     <!-- Define Persistence Unit -->
     <persistence-unit name="PersonPU" transaction-type="JTA">
+        <jta-data-source>jdbc/PersonDb</jta-data-source>
         <!-- <class>com.bitcero.domain.Person</class>
         <properties>
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/udemy_university_java_test?userSSL=false&amp;useTimezome=true&amp;serverTimezone=UTC" />
@@ -14,8 +15,5 @@
             <property name="eclipselink.logging.level.sql" value="FINE" />
             <property name="eclipselink.logging.parameters" value="true" />
         </properties> -->
-
-        <jta-data-source>jdbc/PersonDb</jta-data-source>
-
     </persistence-unit>
 </persistence>

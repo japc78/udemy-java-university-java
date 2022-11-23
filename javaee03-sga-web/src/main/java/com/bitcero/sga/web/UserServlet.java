@@ -11,21 +11,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.bitcero.sga.domain.Person;
+import com.bitcero.sga.domain.User;
 import com.bitcero.sga.service.PersonServiceLocal;
+import com.bitcero.sga.service.UserService;
 
-@WebServlet("/persons")
-public class PersonServlet extends HttpServlet {
+@WebServlet("/users")
+public class UserServlet extends HttpServlet {
 
-  private static final long serialVersionUID = -6775538043913623110L;
+  private static final long serialVersionUID = 718695834870912649L;
+
   @Inject
-  PersonServiceLocal personService;
+  UserService userService;
 
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    List<Person> listPersons = personService.listAllPerson();
-    System.out.println(("listPerson -> " + listPersons));
+    List<User> listUsers = userService.listAllUsers();
+    System.out.println(("listUsers -> " + listUsers));
 
-    request.setAttribute("listPersons", listPersons);
-    request.getRequestDispatcher("/listPersons.jsp").forward(request, response);
+    request.setAttribute("listUsers", listUsers);
+    request.getRequestDispatcher("/listUsers.jsp").forward(request, response);
   }
 }

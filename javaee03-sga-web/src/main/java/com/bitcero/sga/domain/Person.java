@@ -1,6 +1,7 @@
 package com.bitcero.sga.domain;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -30,6 +32,9 @@ public class Person implements Serializable {
   private String email;
   @Column(name = "phone_number")
   private String phoneNUmber;
+
+  @OneToMany(mappedBy = "person")
+  private List<User> userList;
 
 
   public Person() {
@@ -119,6 +124,20 @@ public class Person implements Serializable {
     this.phoneNUmber = phoneNUmber;
   }
 
+  /**
+   * @return the userList
+   */
+  public List<User> getUserList() {
+    return userList;
+  }
+
+  /**
+   * @param userList the userList to set
+   */
+  public void setUserList(List<User> userList) {
+    this.userList = userList;
+  }
+
   /* (non-Javadoc)
    * @see java.lang.Object#toString()
    */
@@ -128,5 +147,42 @@ public class Person implements Serializable {
     return "Person [id=" + id + ", name=" + name + ", surname=" + surname + ", email=" + email + ", phoneNUmber="
         + phoneNUmber + "]";
   }
+
+  /* (non-Javadoc)
+   * @see java.lang.Object#hashCode()
+   */
+
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + id;
+    result = prime * result + ((email == null) ? 0 : email.hashCode());
+    return result;
+  }
+
+  /* (non-Javadoc)
+   * @see java.lang.Object#equals(java.lang.Object)
+   */
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj)
+      return true;
+    if (obj == null)
+      return false;
+    if (getClass() != obj.getClass())
+      return false;
+    Person other = (Person) obj;
+    if (id != other.id)
+      return false;
+    if (email == null) {
+      if (other.email != null)
+        return false;
+    } else if (!email.equals(other.email))
+      return false;
+    return true;
+  }
+
 
 }

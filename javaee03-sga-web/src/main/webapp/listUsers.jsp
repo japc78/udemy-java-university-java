@@ -9,10 +9,10 @@
   <title>Document</title>
 </head>
 <body>
-  <h1>Person List</h1>
+  <h1>User list</h1>
   <ul>
-    <c:forEach items="${listPersons}" var="person">
-      <li>${person.name} ${person.surname}</li>
+    <c:forEach items="${listUsers}" var="user">
+      <li>${user.id} ${user.userName}</li>
     </c:forEach>
   </ul>
 
